@@ -4,6 +4,10 @@ body {
   width: 100%;
   text-align: center;
 
+  header {
+    background-color: #334155;
+  }
+
   main {
     text-align: left;
     margin: 0px auto;
