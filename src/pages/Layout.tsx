@@ -3,13 +3,13 @@ import { Link, Outlet } from "react-router";
 function Layout() {
   return (
     <>
-      <header className="flex justify-center">
+      <header className="flex justify-center border-b-2 bg-slate-200">
         <nav
           aria-label="Personal Website"
           className="max-w-screen-lg w-full flex justify-between py-4"
         >
           <div>
-            <Link to="">Hello World</Link>
+            <Link to="/">elizabeth-hart.com</Link>
           </div>
           <div>
             <ul className="flex gap-4" role="menu" aria-label="Navigation Menu">
@@ -27,7 +27,7 @@ function Layout() {
           </div>
         </nav>
       </header>
-      <main className="flex justify-center h-full">
+      <main className="flex justify-center h-full py-4 ">
         <div className="max-w-screen-lg w-full">
           <Outlet />
         </div>
