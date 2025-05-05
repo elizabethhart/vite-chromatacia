@@ -6,3 +6,7 @@
 - React
 - Vite
 - TailwindCSS
+
+## Deployment
+g
+Deployed with Cloudflare Pages via GitHub integration to https://vite-chromatacia.pages.dev/
