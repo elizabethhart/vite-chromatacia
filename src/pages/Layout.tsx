@@ -9,7 +9,7 @@ function Layout() {
           className="max-w-screen-lg w-full flex justify-between py-4"
         >
           <div>
-            <Link to="/">elizabeth-hart.com</Link>
+            <Link to="/">Home</Link>
           </div>
           <div>
             <ul className="flex gap-4" role="menu" aria-label="Navigation Menu">
