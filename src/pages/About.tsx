@@ -1,8 +1,8 @@
 function About() {
   return (
-    <>
-      <h1>Hi, I'm Elizabeth Hart, I'm a Software Engineer.</h1>
-    </>
+    <div className="flex justify-center">
+      <h1>Hi, I'm Elizabeth Hart, a Software Engineer.</h1>
+    </div>
   );
 }
 
