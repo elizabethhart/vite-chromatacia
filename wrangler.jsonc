@@ -1,8 +1,16 @@
 {
   "name": "vite-chromatacia",
   "compatibility_date": "2025-09-07",
+  "main": "src/worker.ts",
+  "tsconfig": "tsconfig.worker.json",
   "assets": {
     "directory": "./dist",
     "not_found_handling": "single-page-application"
-  }
+  },
+  "routes": [
+    {
+      "pattern": "/api/books",
+      "custom_domain": false
+    }
+  ]
 }
