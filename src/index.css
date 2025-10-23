@@ -13,15 +13,43 @@
     @apply bg-neutral-50 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-100;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     font-variation-settings: normal;
+    line-height: 1.6;
   }
 
   #root {
     min-height: 100vh;
   }
 
-  /* Custom scrollbar */
+  /* Accessibility: Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Accessibility: High contrast mode support */
+  @media (prefers-contrast: high) {
+    .card {
+      @apply border-2 border-neutral-400 dark:border-neutral-600;
+    }
+
+    .btn-primary {
+      @apply border-2 border-primary-700;
+    }
+
+    .btn-secondary {
+      @apply border-2 border-neutral-400 dark:border-neutral-600;
+    }
+  }
+
+  /* Custom scrollbar with better accessibility */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px; /* Increased for better accessibility */
   }
 
   ::-webkit-scrollbar-track {
@@ -29,49 +57,131 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-neutral-300 dark:bg-neutral-600 rounded-full;
+    @apply bg-neutral-400 dark:bg-neutral-500 rounded-full;
+    border: 2px solid transparent;
+    background-clip: content-box;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-neutral-400 dark:bg-neutral-500;
+    @apply bg-neutral-500 dark:bg-neutral-400;
+  }
+
+  /* Focus styles for better accessibility */
+  *:focus-visible {
+    outline: 2px solid theme("colors.primary.500");
+    outline-offset: 2px;
+  }
+
+  /* Skip link for keyboard navigation */
+  .skip-link {
+    @apply absolute -top-10 left-6 bg-primary-500 text-white px-4 py-2 rounded-md z-50;
+    transition: top 0.3s;
+  }
+
+  .skip-link:focus {
+    @apply top-6;
   }
 }
 
 @layer components {
-  /* Glass morphism effect */
+  /* Glass morphism effect with accessibility considerations */
   .glass {
     @apply bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border border-white/20 dark:border-neutral-700/20;
   }
 
-  /* Gradient backgrounds */
+  /* Gradient backgrounds with fallbacks for accessibility */
   .gradient-primary {
-    @apply bg-gradient-to-br from-primary-500 to-primary-600;
+    @apply bg-primary-500; /* Fallback for older browsers */
+    background: linear-gradient(
+      135deg,
+      theme("colors.primary.500"),
+      theme("colors.primary.600")
+    );
   }
 
   .gradient-accent {
-    @apply bg-gradient-to-br from-accent-500 to-accent-600;
+    @apply bg-accent-500; /* Fallback for older browsers */
+    background: linear-gradient(
+      135deg,
+      theme("colors.accent.500"),
+      theme("colors.accent.600")
+    );
   }
 
-  /* Card styles */
+  /* Card styles with better accessibility */
   .card {
     @apply bg-white dark:bg-neutral-900 rounded-2xl shadow-lg border border-neutral-200 dark:border-neutral-800 transition-all duration-200;
+    min-height: 44px; /* Minimum touch target size */
   }
 
   .card-hover {
     @apply hover:shadow-xl hover:-translate-y-1 hover:border-primary-200 dark:hover:border-primary-800;
   }
 
-  /* Button styles */
+  /* Button styles with enhanced accessibility */
   .btn-primary {
-    @apply bg-primary-500 hover:bg-primary-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white font-medium px-6 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary:disabled {
+    @apply bg-neutral-300 dark:bg-neutral-700 text-neutral-500 dark:text-neutral-400 cursor-not-allowed;
   }
 
   .btn-secondary {
-    @apply bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 text-neutral-900 dark:text-neutral-100 font-medium px-6 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+    @apply bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-700 active:bg-neutral-300 dark:active:bg-neutral-600 text-neutral-900 dark:text-neutral-100 font-medium px-6 py-3 rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-neutral-500 focus:ring-offset-2 dark:focus:ring-offset-neutral-900;
+    min-height: 44px; /* Minimum touch target size */
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  /* Input styles */
+  .btn-secondary:disabled {
+    @apply bg-neutral-200 dark:bg-neutral-700 text-neutral-400 dark:text-neutral-500 cursor-not-allowed;
+  }
+
+  /* Input styles with enhanced accessibility */
   .input {
     @apply w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-xl text-neutral-900 dark:text-neutral-100 placeholder-neutral-500 dark:placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+    min-height: 44px; /* Minimum touch target size */
+    font-size: 16px; /* Prevents zoom on mobile */
+  }
+
+  .input:invalid {
+    @apply border-red-500 focus:ring-red-500;
+  }
+
+  .input:valid {
+    @apply border-green-500 focus:ring-green-500;
+  }
+
+  /* Link styles for accessibility */
+  .link {
+    @apply text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 underline underline-offset-2 hover:underline-offset-4 transition-all duration-200;
+  }
+
+  .link:focus {
+    @apply outline-2 outline-primary-500 outline-offset-2 rounded-sm;
+  }
+
+  /* Screen reader only content */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  /* High contrast text for better readability */
+  .text-high-contrast {
+    @apply text-neutral-900 dark:text-neutral-100;
+  }
+
+  /* Focus trap for modals */
+  .focus-trap {
+    @apply focus:outline-none;
   }
 }

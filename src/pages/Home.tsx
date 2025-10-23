@@ -4,8 +4,14 @@ function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <div className="text-center mb-16 animate-fade-in">
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-600 bg-clip-text text-transparent animate-slide-up">
+      <section
+        className="text-center mb-16 animate-fade-in"
+        aria-labelledby="hero-title"
+      >
+        <h1
+          id="hero-title"
+          className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary-600 via-accent-600 to-primary-600 bg-clip-text text-transparent animate-slide-up"
+        >
           Welcome to Chromatacia
         </h1>
         <p className="text-xl md:text-2xl text-neutral-600 dark:text-neutral-400 mb-8 max-w-3xl mx-auto animate-slide-up">
@@ -51,12 +57,18 @@ function Home() {
             Learn More
           </a>
         </div>
-      </div>
+      </section>
 
       {/* This Application's Technology Stack */}
-      <div className="card p-8 mb-16 animate-scale-in">
+      <section
+        className="card p-8 mb-16 animate-scale-in"
+        aria-labelledby="tech-title"
+      >
         <div className="text-center mb-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4">
+          <h2
+            id="tech-title"
+            className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-neutral-100 mb-4"
+          >
             Built With
           </h2>
           <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
@@ -64,7 +76,11 @@ function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          role="list"
+          aria-label="Technology stack"
+        >
           {[
             { name: "React", color: "from-cyan-500 to-cyan-600" },
             { name: "TypeScript", color: "from-blue-500 to-blue-600" },
@@ -79,9 +95,12 @@ function Home() {
               key={tech.name}
               className="text-center p-4 rounded-xl bg-neutral-50 dark:bg-neutral-800 hover:scale-105 transition-transform duration-200"
               style={{ animationDelay: `${index * 0.1}s` }}
+              role="listitem"
+              aria-label={`${tech.name} technology`}
             >
               <div
                 className={`w-12 h-12 bg-gradient-to-br ${tech.color} rounded-xl flex items-center justify-center mx-auto mb-3`}
+                aria-hidden="true"
               >
                 <span className="text-white font-bold text-sm">
                   {tech.name[0]}
@@ -93,12 +112,21 @@ function Home() {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
       {/* Features Grid */}
-      <div className="grid md:grid-cols-3 gap-8 mb-16">
-        <div className="card p-6 text-center hover:scale-105 transition-transform duration-200">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+      <section
+        className="grid md:grid-cols-3 gap-8 mb-16"
+        aria-labelledby="features-title"
+      >
+        <h2 id="features-title" className="sr-only">
+          Features
+        </h2>
+        <article className="card p-6 text-center hover:scale-105 transition-transform duration-200">
+          <div
+            className="w-16 h-16 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            aria-hidden="true"
+          >
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -119,10 +147,13 @@ function Home() {
           <p className="text-neutral-600 dark:text-neutral-400">
             Built with cutting-edge technologies and best practices
           </p>
-        </div>
+        </article>
 
-        <div className="card p-6 text-center hover:scale-105 transition-transform duration-200">
-          <div className="w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <article className="card p-6 text-center hover:scale-105 transition-transform duration-200">
+          <div
+            className="w-16 h-16 bg-gradient-to-br from-accent-500 to-accent-600 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            aria-hidden="true"
+          >
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -143,10 +174,13 @@ function Home() {
           <p className="text-neutral-600 dark:text-neutral-400">
             Optimized for speed and seamless user experience
           </p>
-        </div>
+        </article>
 
-        <div className="card p-6 text-center hover:scale-105 transition-transform duration-200">
-          <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+        <article className="card p-6 text-center hover:scale-105 transition-transform duration-200">
+          <div
+            className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mx-auto mb-4"
+            aria-hidden="true"
+          >
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -167,8 +201,8 @@ function Home() {
           <p className="text-neutral-600 dark:text-neutral-400">
             Carefully crafted with attention to detail and aesthetics
           </p>
-        </div>
-      </div>
+        </article>
+      </section>
     </div>
   );
 }
