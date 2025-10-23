@@ -11,7 +11,7 @@ function Layout() {
 
   const menuItems = [
     { to: "/", label: "Home" },
-    { to: "/bookshelf", label: "Bookshelf" },
+    // { to: "/bookshelf", label: "Bookshelf" },
     { to: "/about", label: "About" },
   ];
 
